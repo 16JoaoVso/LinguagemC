@@ -467,3 +467,95 @@ int main(){
     return 0;
 }
 ```
+
+#### malloc.c
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    int *ptr_int;
+    ptr_int = (int *)malloc(sizeof(int));
+
+    printf("Endereço reservado %p\n" , ptr_int);
+
+    if(ptr_int==NULL){
+        printf("Erro ao tentar alocar a memória\n");
+        return 1;//para a execução do programa
+    }
+    printf("Digite um número: \n");
+    scanf("%d" ,ptr_int);
+
+    printf("O valor digitado é %d e ele está em %p\n" ,*ptr_int,ptr_int);
+    free(ptr_int);
+    return 0;
+}
+```
+
+#### maloc2.c
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    int *array;
+    int tamanho = 5;
+
+    array = (int *)malloc (tamanho * sizeof(int));
+
+    if (array=NULL){
+    printf("Erro na alocação de memória\n");
+    return 1;
+    }
+    for(int i = 0 ; i < tamanho ; i++){
+        array[i] = i + 1;
+    }
+    printf("Exibindo os dados do array\n");
+    for(int j = 0 ; j < tamanho ; j++){
+        printf("%d - " ,array[j]);
+    }
+    free(array);
+    return 0;
+}
+```
+
+#### arquivo.c
+
+```C
+#include <stdio.h>
+
+int main(){
+    FILE *arquivo;
+    char texto[100];
+
+    // Abre o arquivo para escrita
+        arquivo = fopen("cortinas.txt", "w");
+
+        if (arquivo == NULL){
+            printf("Erro ao abrir o arquivo.\n");
+            return 1;
+        }
+
+    // Escreve no arquivo
+    fprintf(arquivo, "VAAAAAAAAAAAAAAAAAAAAAI CORINTHIAAAAAAAAAAAAAAANS !!!!!!");
+
+    // Fecha o arquivo
+    fclose(arquivo);
+
+    // Abre o arquivo para leitura
+    arquivo = fopen("cortinas.txt", "r");
+      if (arquivo == NULL){
+            printf("Erro ao abrir o arquivo.\n");
+            return 1;
+      }
+      
+      // Lê o conteúdo do arquivo e imprime na tela 
+      fgets(texto, 100, arquivo);
+      printf("Conteúdo do arquivo: %s\n", texto);
+
+      fclose(arquivo);
+
+      return 0;
+}```
